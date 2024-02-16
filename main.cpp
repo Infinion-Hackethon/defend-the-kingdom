@@ -1,34 +1,75 @@
 #include <iostream>
-#include "pugixml.hpp"
 #include "Kingdom.h"
+using namespace std;
+
+void printSoldier(const Soldier &soldier)
+{
+    cout << "    Int_Class_ID: " << soldier.intClassID << endl;
+    cout << "    Name: " << soldier.name << endl;
+    cout << "    Active: " << soldier.active << endl;
+    cout << "    SkillRef: " << soldier.skillRef << endl;
+}
+
+void printClan(const Clan &clan)
+{
+    cout << "  Int_Class_ID: " << clan.intClassID << endl;
+    cout << "  Name: " << clan.name << endl;
+    cout << "  MaxCloningPower: " << clan.maxCloningPower << endl;
+    cout << "  CloningVar: " << clan.cloningVar << endl;
+    cout << "  BaseDeployCost: " << clan.baseDeployCost << endl;
+    cout << "  Soldiers: " << endl;
+    for (const auto &soldier : clan.soldiers)
+    {
+        printSoldier(soldier);
+    }
+}
+
+void printSkill(const Skill &skill)
+{
+    cout << "  Int_Class_ID: " << skill.intClassID << endl;
+    cout << "  Strength: " << skill.strength << endl;
+}
+
+void printKingdom(const Kingdom &kingdom)
+{
+    cout << "Name: " << kingdom.name << endl;
+
+    cout << "Clans: " << endl;
+    for (const auto &clan : kingdom.clans)
+    {
+        printClan(clan);
+    }
+
+    cout << "Skills: " << endl;
+    for (const auto &skill : kingdom.skills)
+    {
+        printSkill(skill);
+    }
+}
 
 int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        std::cout << "XML file path not provided.\n";
+        cout << "XML file path not provided.\n";
         exit(1);
     }
 
-    // Get command line arguments one by one
-    std::string xmlFilePath = argv[1];
+    string filePath = argv[1];
 
-    // Load the XML file
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file(xmlFilePath.c_str());
-
-    // Check for errors
-    if (!result)
+    try
     {
-        std::cout << "Error: " << result.description() << "\n";
-        exit(1);
+        Kingdom kingdom(filePath);
+        // Now you can use the 'kingdom' object as needed
+        printKingdom(kingdom);
     }
-    else{
-        std::cout << "XML file loaded successfully.\n";
-        std::cout << doc.child("Kingdom").child("Name").text().as_string() << "\n";
+    catch (const exception &e)
+    {
+        cerr << "Error: " << e.what() << endl;
+    }
 
-        Kingdom kingdom(xmlFilePath);
-    }
+    cout << "Press Enter to continue...";
+    cin.ignore();
 
     return 0;
 }
