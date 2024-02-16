@@ -4,20 +4,20 @@ using namespace std;
 
 void printSoldier(const Soldier &soldier)
 {
-    std::cout << "    Int_Class_ID: " << soldier.intClassID << std::endl;
-    std::cout << "    Name: " << soldier.name << std::endl;
-    std::cout << "    Active: " << soldier.active << std::endl;
-    std::cout << "    SkillRef: " << soldier.skillRef << std::endl;
+    cout << "    Int_Class_ID: " << soldier.intClassID << endl;
+    cout << "    Name: " << soldier.name << endl;
+    cout << "    Active: " << soldier.active << endl;
+    cout << "    SkillRef: " << soldier.skillRef << endl;
 }
 
 void printClan(const Clan &clan)
 {
-    std::cout << "  Int_Class_ID: " << clan.intClassID << std::endl;
-    std::cout << "  Name: " << clan.name << std::endl;
-    std::cout << "  MaxCloningPower: " << clan.maxCloningPower << std::endl;
-    std::cout << "  CloningVar: " << clan.cloningVar << std::endl;
-    std::cout << "  BaseDeployCost: " << clan.baseDeployCost << std::endl;
-    std::cout << "  Soldiers: " << std::endl;
+    cout << "  Int_Class_ID: " << clan.intClassID << endl;
+    cout << "  Name: " << clan.name << endl;
+    cout << "  MaxCloningPower: " << clan.maxCloningPower << endl;
+    cout << "  CloningVar: " << clan.cloningVar << endl;
+    cout << "  BaseDeployCost: " << clan.baseDeployCost << endl;
+    cout << "  Soldiers: " << endl;
     for (const auto &soldier : clan.soldiers)
     {
         printSoldier(soldier);
@@ -26,21 +26,21 @@ void printClan(const Clan &clan)
 
 void printSkill(const Skill &skill)
 {
-    std::cout << "  Int_Class_ID: " << skill.intClassID << std::endl;
-    std::cout << "  Strength: " << skill.strength << std::endl;
+    cout << "  Int_Class_ID: " << skill.intClassID << endl;
+    cout << "  Strength: " << skill.strength << endl;
 }
 
 void printKingdom(const Kingdom &kingdom)
 {
-    std::cout << "Name: " << kingdom.name << std::endl;
+    cout << "Name: " << kingdom.name << endl;
 
-    std::cout << "Clans: " << std::endl;
+    cout << "Clans: " << endl;
     for (const auto &clan : kingdom.clans)
     {
         printClan(clan);
     }
 
-    std::cout << "Skills: " << std::endl;
+    cout << "Skills: " << endl;
     for (const auto &skill : kingdom.skills)
     {
         printSkill(skill);
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        std::cout << "XML file path not provided.\n";
+        cout << "XML file path not provided.\n";
         exit(1);
     }
 
@@ -63,9 +63,9 @@ int main(int argc, char *argv[])
         // Now you can use the 'kingdom' object as needed
         printKingdom(kingdom);
     }
-    catch (const std::exception &e)
+    catch (const exception &e)
     {
-        std::cerr << "Error: " << e.what() << std::endl;
+        cerr << "Error: " << e.what() << endl;
     }
 
     cout << "Press Enter to continue...";
