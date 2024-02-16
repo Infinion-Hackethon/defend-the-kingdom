@@ -1,15 +1,17 @@
 #include <iostream>
 #include <pugixml.hpp>
+#include <Kingdom.h>
 
-int main(int argc, char* argv[]) {
-    if (argc < 2) {
+int main(int argc, char *argv[])
+{
+    if (argc < 2)
+    {
         std::cout << "XML file path not provided.\n";
         exit(1);
     }
 
     // Get command line arguments one by one
     std::string xmlFilePath = argv[1];
-
 
     // Delete the below line, and write your code, use of OOPs concepts are preferred...
 
