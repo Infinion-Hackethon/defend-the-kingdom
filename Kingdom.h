@@ -4,6 +4,7 @@
 #include "pugixml.hpp"
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 class Soldier
 {
@@ -37,7 +38,7 @@ class Kingdom
 public:
     std::string name;
     std::vector<Clan> clans;
-    std::vector<Skill> skills;
+    std::unordered_map<int, int> skills;
 
     Kingdom(const std::string &filename)
     {
@@ -93,10 +94,9 @@ public:
             // Parse Skills
             for (pugi::xml_node skillNode = kingdomNode.child("Skill"); skillNode; skillNode = skillNode.next_sibling("Skill"))
             {
-                Skill skill;
-                skill.intClassID = skillNode.child("Int_Class_ID").text().as_int();
-                skill.strength = skillNode.child("Strength").text().as_int();
-                skills.push_back(skill);
+                int intClassID = skillNode.child("Int_Class_ID").text().as_int();
+                int strength = skillNode.child("Strength").text().as_int();
+                skills[intClassID] = strength;
             }
         }
     }

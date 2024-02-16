@@ -4,31 +4,26 @@ using namespace std;
 
 void printSoldier(const Soldier &soldier)
 {
-    cout << "    Int_Class_ID: " << soldier.intClassID << endl;
-    cout << "    Name: " << soldier.name << endl;
-    cout << "    Active: " << soldier.active << endl;
-    cout << "    SkillRef: " << soldier.skillRef << endl;
+    cout << "Int_Class_ID: " << soldier.intClassID << endl;
+    cout << "Name: " << soldier.name << endl;
+    cout << "Active: " << soldier.active << endl;
+    cout << "SkillRef: " << soldier.skillRef << endl;
 }
 
 void printClan(const Clan &clan)
 {
-    cout << "  Int_Class_ID: " << clan.intClassID << endl;
-    cout << "  Name: " << clan.name << endl;
-    cout << "  MaxCloningPower: " << clan.maxCloningPower << endl;
-    cout << "  CloningVar: " << clan.cloningVar << endl;
-    cout << "  BaseDeployCost: " << clan.baseDeployCost << endl;
-    cout << "  Soldiers: " << endl;
+    cout << "Int_Class_ID: " << clan.intClassID << endl;
+    cout << "Name: " << clan.name << endl;
+    cout << "MaxCloningPower: " << clan.maxCloningPower << endl;
+    cout << "CloningVar: " << clan.cloningVar << endl;
+    cout << "BaseDeployCost: " << clan.baseDeployCost << endl;
+    cout << "Soldiers: " << endl;
     for (const auto &soldier : clan.soldiers)
     {
         printSoldier(soldier);
     }
 }
 
-void printSkill(const Skill &skill)
-{
-    cout << "  Int_Class_ID: " << skill.intClassID << endl;
-    cout << "  Strength: " << skill.strength << endl;
-}
 
 void printKingdom(const Kingdom &kingdom)
 {
@@ -43,7 +38,8 @@ void printKingdom(const Kingdom &kingdom)
     cout << "Skills: " << endl;
     for (const auto &skill : kingdom.skills)
     {
-        printSkill(skill);
+        cout << "Int_Class_ID: " << skill.first << " ";
+        cout << "Strength: " << skill.second << endl;
     }
 }
 
