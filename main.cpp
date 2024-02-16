@@ -1,6 +1,6 @@
 #include <iostream>
-#include <pugixml.hpp>
-#include <Kingdom.h>
+#include "pugixml.hpp"
+#include "Kingdom.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,9 +13,22 @@ int main(int argc, char *argv[])
     // Get command line arguments one by one
     std::string xmlFilePath = argv[1];
 
-    // Delete the below line, and write your code, use of OOPs concepts are preferred...
+    // Load the XML file
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(xmlFilePath.c_str());
 
-    std::cout << "The function is not fully implemented.\n";
+    // Check for errors
+    if (!result)
+    {
+        std::cout << "Error: " << result.description() << "\n";
+        exit(1);
+    }
+    else{
+        std::cout << "XML file loaded successfully.\n";
+        std::cout << doc.child("Kingdom").child("Name").text().as_string() << "\n";
+
+        Kingdom kingdom(xmlFilePath);
+    }
 
     return 0;
 }
