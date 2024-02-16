@@ -77,6 +77,19 @@ public:
                 clans.push_back(clan);
             }
 
+
+            // Function to calculate maximum strength of war with provided budget
+            int getMaxStrengthForBudget(const Kingdom& kingdom, int budget) {
+                int maxStrength = 0;
+                for (const auto& clan : kingdom.clans) {
+                    int numWarriors = std::min(budget / clan.baseDeployCost, clan.maxCloningPower);
+                    for (const auto& warrior : clan.warriors) {
+                        maxStrength += std::min(numWarriors, 1) * warrior.skill; // Only consider one clone
+                    }
+                }
+                return maxStrength;
+            }
+
             // Parse Skills
             for (pugi::xml_node skillNode = kingdomNode.child("Skill"); skillNode; skillNode = skillNode.next_sibling("Skill"))
             {
